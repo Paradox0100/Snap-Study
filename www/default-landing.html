@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/global.css">
+        <style>
+            body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+span {
+  display: flex;
+  flex-direction: row;
+}
+span:before, span:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+}
+span:before {
+  margin-right: 10px
+}
+span:after {
+  margin-left: 10px
+}
+button {
+    width: 80%;
+    padding: 12px;
+    background-color: #EF3E36;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.title-content {
+    top: 10px;
+    position: absolute;
+}
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+        <center>
+            <div class="title-content">
+
+            <h1>Welcome to SnapStudy</h1>
+            <h2>Get started by creating an account</h2>
+            </div> 
+        <button class="signup-button" onclick="signup()">Signup</button>
+        <br>
+        <br>
+        <span class="custom">or</span>
+        <br>
+        <button class="login-button" onclick="login()">Login</button>
+        </center>
+        </div>
+
+    </body>
+    <script src="js/default-landing.js"></script>
+</html>
