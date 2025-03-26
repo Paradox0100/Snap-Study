@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Cards</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/flashcards.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-content">
+            <div class="left">
+                <img src="img/arrow.png" height="20px" width="20px" class="back-arrow" id="back-arrow">
+            <h2 class="title">Flashcards</h2>
+            </div>
+            <div class="right" onclick="settingsPop()">
+                <img src="img/setting.png" height="20px" width="20px">
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <br>
+          <br>
+          <label class="bubble">
+            <input type="checkbox" id="shuffle" name="shuffle" value="Shuffle">
+            <span>Shuffle</span>
+        </label>
+        <br>
+        <h2>Start With</h2>
+        <label class="bubble">
+            <input type="radio" id="term-radio" name="a" value="term" checked>
+            <span>Term</span>
+        </label>
+        <br>
+        <label class="bubble">
+            <input type="radio" id="def-radio" name="a" value="def">
+            <span>Definition</span>
+        </label>
+        </div>
+    </div>
+
+    <div class="result" id="result">
+        <div class="circle">
+            <div class="circle-inner">
+                <span class="percentage">75%</span>
+            </div>
+        </div>
+        <div class="option-container">
+            <button class="retry" id="SO" onclick="startOver()">Start Over</button>
+            <button class="again" id="SUT" onclick="studyUnknown()">Study Unknown Terms</button>
+        </div>
+    </div>
+</div>
+
+    <div class="flashcard-container" id="flashcard-container">
+        <div class="flip-card" onclick="this.classList.toggle('flipped');">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <h3 id="term">Term</h3>
+                </div>
+                <div class="flip-card-back">
+                    <h3 id="def">Definition</h3>
+                </div>
+            </div>
+            <div class="counter">
+                <span id="counter">1/1</span>
+            </div>
+            <div class="sort">
+                <button class="idk" id="idk" onclick="event.stopPropagation();">idk</button>
+                <button class="ik" id="ik" onclick="event.stopPropagation();">ik</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="js/flashcards.js"></script>
+</html>

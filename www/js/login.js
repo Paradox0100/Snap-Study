@@ -1,18 +1,18 @@
 import { auth } from "./firebase-config.js";
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
 
-document.getElementById("signup-form").addEventListener("submit", (e) => {
+document.getElementById("login-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             
             const user = userCredential.user;
-            console.log("User signed up as:", user);
+            console.log("User signed in:", user);
             
-            alert(`Signed up as ${user.email}`);
+            alert(`logged in as ${user.email}`);
             localStorage.setItem('userId', user.uid);
             localStorage.setItem('email', user.email);
             window.location.href = 'main.html';
@@ -20,6 +20,6 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.error("Error signing up:", errorCode, errorMessage);
+            console.error("Error signing in:", errorCode, errorMessage);
         });
 });

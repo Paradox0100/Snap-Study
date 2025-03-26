@@ -9,21 +9,86 @@
     <body>
         <!-- nav bar -->
         <div class="bottom-nav">
+          <!--<a href="https://www.flaticon.com/free-icons/info" title="info icons">Info icons created by Stockio - Flaticon</a>-->
+          <a href="about.html" class="nav-item"><img src="img/info.png" class="nav-icon"></a>
           <!-- <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a> -->
-          <a href="#home" class="nav-item"><img src="img/home.png" class="nav-icon"></a>
+          <a href="main.html" class="nav-item"><img src="img/home.png" class="nav-icon"></a>
           <!-- <a href="https://www.flaticon.com/free-icons/settings" title="settings icons">Settings icons created by Freepik - Flaticon</a> -->
-          <a href="#settings" class="nav-item"><img src="img/setting.png" class="nav-icon"></a>
+          <a href="settings.html" class="nav-item"><img src="img/setting.png" class="nav-icon"></a>
           <!-- <a href="https://www.flaticon.com/free-icons/music-library" title="music library icons">Music library icons created by Enamo Studios - Flaticon</a> -->
-          <a href="#library" class="nav-item"><img src="img/music-library.png" class="nav-icon"></a>
+          <a href="library.html" class="nav-item"><img src="img/music-library.png" class="nav-icon"></a>
           <!-- <a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by dmitri13 - Flaticon</a> -->
-          <a href="#add" class="nav-item"><img src="img/add.png" class="nav-icon"></a>
+          <a href="create.html" class="nav-item"><img src="img/add.png" class="nav-icon"></a>
       </div>
       </center>
           
 
-        <!-- can you do xxs with wasm?-->
         <!-- main contents -->
         <div class="container">
+          <div class="top-content">
+            <h2 class="title">Home</h2>
+            <!-- <a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Catalin Fertu - Flaticon</a>-->
+            <img src="img/search-interface-symbol.png" class="search" height="30px" width="30px" id="myBtn">
+          </div>
+
+          </div>
+
+<div class="giga-lump">
+          <center>
+          <div class="userprofile" id="userprofile">
+            <img src="img/user.png" class="user-icon" height="60px">
+            <h3 class="user-email" id="user-email">email not found</h3>
+          </div>
+          </center>
+
+          <!--<a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>-->
+
+
+          <div class="recent-lump">
+            <span class="container-tag"><img src="img/recent.png" height="20px" width="20px"> recent</span>
+          
+            <div class="card-shelf" id="recent">
+            <h4>no recent sets</h4>
+            </div>
+            </div>
+          </div>
+
+
+        <div class="recent-lump">
+          <!--<a href="https://www.flaticon.com/free-icons/ui" title="ui icons">Ui icons created by Freepik - Flaticon</a>-->
+          <span class="container-tag"><img src="img/share.png" height="20px" width="20px"> shared</span>
+          <div class="card-shelf" id="shared">
+            <h4>no shared sets</h4>
+          </div>
+        </div>
+
+        <div class="recent-lump">
+          <!--<a href="https://www.flaticon.com/free-icons/ui" title="ui icons">Ui icons created by Freepik - Flaticon</a>-->
+          <span class="container-tag"><img src="img/music-library.png" height="20px" width="20px"> your library</span>
+          <div class="card-shelf">
+            <div class="study-set">
+              <div class="card-container">
+                  <h3>Study Set 1</h3>
+                  <p>Some description here...</p>
+              </div>
+          </div>
+          <div class="study-set">
+              <div class="card-container">
+                  <h3>Study Set 2</h3>
+                  <p>Some description here...</p>
+              </div>
+          </div>
+          <div class="study-set">
+              <div class="card-container">
+                  <h3>Study Set 3</h3>
+                  <p>Some description here...</p>
+              </div>
+          </div>
+          </div>
+        </div>
+</div>
+
+<div class="scroll-spacer"></div>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -58,4 +123,6 @@
     </body>
 
     <script src="js/global.js"></script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/main.js"></script>
 </html>

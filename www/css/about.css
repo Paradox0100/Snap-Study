@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal; 
+}
+
+body {
+    font-family: 'Comfortaa', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.header {
+    background-color: #EF3E36;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    position: relative;
+}
+
+.home-button {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.home-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.container {
+    margin: 60px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.top-content .title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #EF3E36;
+    text-align: center;
+}
+
+.content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.content ul {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.content ul li {
+    margin-bottom: 10px;
+}
+
+.footer {
+    background-color: #EF3E36;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.scroll-spacer {
+    height: 65px;
+}

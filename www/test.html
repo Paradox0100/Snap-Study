@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/test.css">
+</head>
+<body>
+
+    <div class="container">
+    <div class="top-content">
+        <div class="left">
+            <!--<a href="https://www.flaticon.com/free-icons/arrow" title="arrow icons">Arrow icons created by Kirill Kazachek - Flaticon</a>-->
+            <img src="img/arrow.png" height="20px" width="20px" class="back-arrow" onclick="back()">
+            <h2 class="title">Test</h2>
+        </div>
+        <div class="right" onclick="settingsPop()">
+        <img src="img/setting.png" height="20px" width="20px"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <br>
+          <br>
+          <div class="settings-option">
+            <div class="check-boxes">
+                <h2>Test Settings</h2>
+        <label class="bubble">
+            <input type="checkbox" id="mc" name="mc" value="Multiple choice" checked>
+            <span>Multiple choice</span>
+        </label>
+        <br>
+        <label class="bubble">
+            <input type="checkbox" id="tf" name="tf" value="True/False">
+            <span>True/False</span>
+        </label>
+        <br>
+        <label class="bubble">
+            <input type="checkbox" id="w" name="w" value="Written">
+            <span>Written</span>
+        </label>
+        <br>
+        <label class="bubble">
+            <input type="checkbox" id="r" name="r" value="Random" checked>
+            <span>Random Order</span>
+        </label>
+        <br>
+        <h2>Answer with</h2>
+        <label class="bubble">
+            <input type="radio" id="term-radio" name="a" value="term">
+            <span>Term</span>
+        </label>
+        <br>
+        <label class="bubble">
+            <input type="radio" id="def-radio" name="a" value="def" checked>
+            <span>Definition</span>
+        </label>
+              </div>
+          </div>
+        </div>
+      
+      </div>
+
+      <div class="result" id="result">
+        <div class="circle-container">
+        <div class="circle">
+            <div class="circle-inner">
+                <span class="percentage"></span>
+            </div>
+        </div>
+        </div>
+        <div class="option-container">
+            <button class="retry" onclick="retry()">Retry</button>
+        </div>
+    </div>
+
+      <div class="giga-test-container" id="giga-test-container">
+      <div class="test-container" id="test-container">
+    </div>
+    <div class="submit-container">
+    <button class="submit" id="submit">Submit</button>
+    </div>
+    </div>
+
+    <div class="spacer">
+        </div>
+        
+    </div>
+
+
+</body>
+<script src="js/test.js"></script>
+</html>

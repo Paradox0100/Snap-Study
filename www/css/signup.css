@@ -1,6 +1,18 @@
+::selection {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+@font-face {
+            font-family: 'Comfortaa';
+            src: url('../fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #e9ecef;
+    font-family: 'Comfortaa', sans-serif;
+    background-color: #FEFFFE;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,4 +51,8 @@ button {
 
 button:hover {
     background-color: #EF3E36;
+}
+
+input, button {
+    font-family: 'Comfortaa', sans-serif;
 }

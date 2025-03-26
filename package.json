@@ -29,6 +29,9 @@
     ]
   },
   "dependencies": {
-    "cordova-plugin-firebase": "2.0.6"
+    "cordova-plugin-firebase": "2.0.6",
+    "firebase": "^11.4.0",
+    "strip-comments": "^2.0.1",
+    "strip-css-comments": "^5.0.0"
   }
 }

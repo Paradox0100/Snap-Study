@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create A Set</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/create.css">
+</head>
+<body>
+
+    <div class="container">
+    <div class="top-content">
+        <div class="right">
+        <h2 class="title">Create</h2>
+        </div>
+
+    </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Choose an Option</h2>
+            <p>Save as Draft or Publish</p>
+            <button id="option1">Draft</button>
+            <button id="option2">Publish</button>
+        </div>
+    </div>
+
+    <div class="options">
+        <div class="options-limit">
+        <input class="name-in" id="name" placeholder="set name" maxlength="100">
+        <button class="save-btn" id="save">save</button>
+        </div>
+    </div>
+    <div class="scroll-container">
+    <div id="ac">
+    <div class="flashcard-container" id="fc">
+        <!--<a href="https://www.flaticon.com/free-icons/trash-can" title="trash can icons">Trash can icons created by kliwir art - Flaticon</a>-->
+        <div class="card" id="card">
+            <div class="title-stuff">
+            <span>term</span>
+            </div>
+            <br>
+            <textarea class="term" placeholder="term..." rows="3"></textarea>
+            <div class="split">and</div>
+            <span>definition</span>
+            <br>
+            <textarea class="def" placeholder="definition..." rows="3"></textarea>
+            <br>
+        </div>
+    </div>
+</div>
+
+    <div class="add-container">
+        <button class="add-card-btn" id="add-card">add card</button>
+    </div>
+    <div class="blank">
+    </div>
+</div>
+</div>
+    <!-- nav bar -->
+    <div class="bottom-nav">
+        <!-- <a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a> -->
+        <a href="main.html" class="nav-item"><img src="img/home.png" class="nav-icon"></a>
+        <!-- <a href="https://www.flaticon.com/free-icons/settings" title="settings icons">Settings icons created by Freepik - Flaticon</a> -->
+        <a href="settings.html" class="nav-item"><img src="img/setting.png" class="nav-icon"></a>
+        <!-- <a href="https://www.flaticon.com/free-icons/music-library" title="music library icons">Music library icons created by Enamo Studios - Flaticon</a> -->
+        <a href="library.html" class="nav-item"><img src="img/music-library.png" class="nav-icon"></a>
+        <!-- <a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by dmitri13 - Flaticon</a> -->
+        <a href="create.html" class="nav-item"><img src="img/add.png" class="nav-icon"></a>
+    </div>
+</body>
+<script type="module" src="js/create.js"></script>
+</html>
