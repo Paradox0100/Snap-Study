@@ -1,4 +1,4 @@
-
+import { sleep } from "./global.js";
 import { auth, db, doc, setDoc, getDocs, collection } from "./firebase-config.js";
 
 const cardTemplate = `
@@ -67,7 +67,9 @@ document.getElementById("add-card").addEventListener("click", function() {
     document.getElementById("ac").appendChild(cardContainer);
 
     
-    cardContainer.querySelector(".bin-icon").addEventListener("click", function() {
+    cardContainer.querySelector(".bin-icon").addEventListener("click", async function() {
+        cardContainer.classList.add("deleted");
+        await sleep(500);
         cardContainer.remove();
     });
 });
@@ -94,7 +96,12 @@ document.getElementById("save").onclick = async function() {
             return;
         }
     }
-
+    const checkDef = definitions;
+    const checkTerm = terms;
+    if (checkDuplicates(checkTerm) || checkDuplicates(checkDef)) {
+        alert("You have duplicate terms or definitions. Please remove them.");
+        return;
+    } else {
     
     const email = localStorage.getItem("email"); 
     const user = auth.currentUser ; 
@@ -106,7 +113,8 @@ document.getElementById("save").onclick = async function() {
         
         try {
             if (await saveData(uid, jsonData) == true) {
-                window.location.href = `set.html?name=${name}`;
+                console.log(`'${name}'`);
+                window.location.href = `set.html?name=${encodeURIComponent(name)}`;
             }
         } catch (error) {
             console.error("Error saving flashcard data: ", error);
@@ -114,6 +122,7 @@ document.getElementById("save").onclick = async function() {
     } else {
         console.error("User  is not authenticated.");
     }
+}
 };
 
 async function checkNameCollision(uid, setName) {
@@ -162,4 +171,8 @@ function jsonPack(terms, definitions, name, draft, maker) {
         "definitions": definitions
     };
     return JSON.stringify(json);
+}
+
+function checkDuplicates(terms) {
+    return new Set(terms).size !== terms.length;
 }

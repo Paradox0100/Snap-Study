@@ -1,22 +1,37 @@
+import { sleep } from "./global.js";
 import { auth, db, doc, onAuthStateChanged, collection, getDocs } from "./firebase-config.js";
+
+function showLoading() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}
+showLoading();
+
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
 
 function dispSet(input) {
   const sharedContainer = document.getElementById("shared");
   sharedContainer.innerHTML = ""; // Clear existing content
 
-  for (let i = 0; i < input.length; i++) {
-    const studySet = document.createElement("div");
-    studySet.className = "study-set";
-    studySet.innerHTML = `
-    <div class="card-container">
-      <h3>${input[i].name}</h3>
-      <p>Author: ${input[i].maker}</p>
-    </div>
-    `;
-    studySet.addEventListener("click", function() {
-      window.location.href = `set.html?name=${input[i].id}&shared=${true}`;
+  if (Array.isArray(input) && input.length > 0) {
+    input.forEach(item => {
+      const studySet = document.createElement("div");
+      studySet.className = "study-set";
+      studySet.innerHTML = `
+        <div class="card-container">
+          <h3>${item.name}</h3>
+          <p>Author: ${item.maker}</p>
+        </div>
+      `;
+      studySet.addEventListener("click", function () {
+        window.location.href = `set.html?name=${encodeURIComponent(item.id)}&shared=true`;
+      });
+      sharedContainer.appendChild(studySet);
     });
-    sharedContainer.appendChild(studySet);
+  } else {
+    sharedContainer.innerHTML = "<h4>No shared sets available.</h4>";
   }
 }
 
@@ -33,9 +48,25 @@ async function fetchShareDisp() {
         console.log("Server fetch");
         const sharedCollection = collection(db, "flashcards", "shared", "sets");
         const snapShot = await getDocs(sharedCollection);
-        const sharedData = processSnapshot(snapShot, "shared", user);
+        const sharedData = await processSnapshot(snapShot, "shared", user);
         dispSet(sharedData);
         localStorage.setItem('shared', JSON.stringify(sharedData)); 
+      }
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+async function fetchLibDisp() {
+  try {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const mySetsCollection = collection(db, "flashcards", user.uid, "sets");
+        const snapShot = await getDocs(mySetsCollection);
+        const mySetsData = await processSnapshot(snapShot, "mySets", user);
+        displayLibrary(mySetsData);
+        localStorage.setItem('mySets', JSON.stringify(mySetsData));
       }
     });
   } catch (e) {
@@ -59,7 +90,7 @@ function mainLoadsHandler() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById("user-email").innerText = localStorage.getItem('email');
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -71,8 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     if (mainLoadsHandler()) {
       fetchShareDisp();
+      fetchLibDisp();
     } else {
       dispSet(getCachedData('shared'));
+      displayLibrary(getCachedData('mySets'));
     }
   } catch (e) {
     localStorage.setItem('mainLoads', JSON.stringify(0));
@@ -101,11 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       if (recent[i].shared) {
         studySet.addEventListener("click", function() {
-          window.location.href = `set.html?name=${recent[i].id}&shared=${true}`;
+          window.location.href = `set.html?name=${encodeURIComponent(recent[i].id)}&shared=${true}`;
         });
       } else {
         studySet.addEventListener("click", function() {
-          window.location.href = `set.html?name=${recent[i].name}`;
+          window.location.href = `set.html?name=${encodeURIComponent(recent[i].name)}`;
         });
       }
       recentContainer.appendChild(studySet);
@@ -113,7 +146,34 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch (e) {
     localStorage.setItem('recent', JSON.stringify([]));
   }
+
+  await sleep(1000);
+  hideLoading();
 });
+
+function displayLibrary(input) {
+  const sharedContainer = document.getElementById("library");
+  sharedContainer.innerHTML = ""; // Clear existing content
+
+  if (Array.isArray(input) && input.length > 0) {
+    input.forEach(item => {
+      const studySet = document.createElement("div");
+      studySet.className = "study-set";
+      studySet.innerHTML = `
+        <div class="card-container">
+          <h3>${item.name}</h3>
+          <p>Author: ${item.maker}</p>
+        </div>
+      `;
+      studySet.addEventListener("click", function () {
+        window.location.href = `set.html?set=${encodeURIComponent(item.name)}`;
+      });
+      sharedContainer.appendChild(studySet);
+    });
+  } else {
+    sharedContainer.innerHTML = "<h4>no sets in library</h4>";
+  }
+}
 
 function processSnapshot(snapshot, type, user) {
   const data = [];
@@ -144,16 +204,15 @@ function processSnapshot(snapshot, type, user) {
 
 var modal = document.getElementById("myModal");
 
-
-var btn = document.getElementById("myBtn");
+document.getElementById("refresh").addEventListener("click", function() {
+  localStorage.setItem('mainLoads', JSON.stringify(4));
+  window.location.reload();
+});
 
 
 var span = document.getElementsByClassName("close")[0];
 
 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
 
 
 span.onclick = function() {
@@ -171,4 +230,6 @@ const currentUrl = window.location.href;
 document.getElementById("url").innerText = `${window.location.href} port: ${window.location.port}`;
 
 
-
+document.getElementById("userprofile").addEventListener("click", function() {
+  window.location.href = `settings.html`;
+});

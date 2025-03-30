@@ -91,6 +91,7 @@
     margin: 10px 0; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     transition: transform 0.2s; 
+    animation: popIn 0.5s;
 }
 
 .set-card:hover {
@@ -117,3 +118,18 @@ hr {
 .scroll-buffer {
     height: 60px; 
 }
+
+.set-card p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;   
+}
+
+@keyframes popIn {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }

@@ -392,5 +392,5 @@ function retry() {
 startTest();
 
 function back() {
-    window.location.href = `set.html?name=${JSON.parse(localStorage.getItem('set')).name}`;
+    window.location.href = `set.html?name=${encodeURIComponent(JSON.parse(localStorage.getItem('set')).name)}`;
 }

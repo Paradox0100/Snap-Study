@@ -31,6 +31,7 @@ body {
     box-shadow: 
     0 4px 10px rgba(0, 0, 0, 0.4),  
     0 0 20px rgba(0, 0, 0, 0.05); 
+    animation: popIn 0.5s;
 }
 .flashcard-container {
     width: 100%;
@@ -84,6 +85,7 @@ textarea {
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: transparent;
 }
 .add-card-btn {
     width: 80%;
@@ -102,6 +104,7 @@ body {
 .scroll-container {
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 20px;
 }
 
 .blank {
@@ -172,7 +175,33 @@ body {
     animation: spin 1s linear infinite;
 }
 
+.deleted {
+    animation: popOut 0.5s;
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+@keyframes popIn {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes popOut {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  .ac {
+    padding-bottom: 20px;
+  }

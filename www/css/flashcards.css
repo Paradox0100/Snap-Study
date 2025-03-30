@@ -26,6 +26,7 @@ button {
     width: 80%;
     height: 300px;
     perspective: 1000px;
+    transition: background-color 0.5s ease;
   }
   
   .flip-card-inner {

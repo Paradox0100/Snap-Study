@@ -56,3 +56,7 @@ button:hover {
 input, button {
     font-family: 'Comfortaa', sans-serif;
 }
+
+button {
+    margin-top: 20px;
+}

@@ -50,6 +50,7 @@
         <div class="options">
             <!--<a href="https://www.flaticon.com/free-icons/edit" title="edit icons">Edit icons created by Kiranshastry - Flaticon</a>-->
             <img src="img/edit.png" height="30px" width="30px" class="edit-button" id="edit-btn">
+            <img src="img/refresh.png" height="30px" width="30px" class="refresh-button" id="refresh-btn">
             <img src="img/share.png" height="30px" width="30px" class="share-button" id="share-btn">
             <img src="img/bin.png" height="30px" width="30px" class="delete-button" id="delete-btn">
         </div>
@@ -87,16 +88,17 @@
         const urlParams = new URLSearchParams(window.location.search);
         const setName = urlParams.get('name');
         function test() {
-            window.location.href = "flashcards.html?name=" + setName;
+            window.location.href = "test.html?name=" + encodeURIComponent(setName);
         }
 
         function flashcards() {
-            window.location.href = "flashcards.html?name=" + setName;
+            window.location.href = "flashcards.html?name=" + encodeURIComponent(setName);
         }
     </script>
     <script src="cordova.js"></script>
     <script type="module" src="js/firebase-config.js"></script>
     <script type="module" src="js/shareMod.js"></script>
     <script type="module" src="js/set.js"></script>
+    <script type="module" src="js/global.js"></script>
 </body>
 </html>

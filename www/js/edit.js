@@ -1,4 +1,5 @@
 import { auth, db, doc, getDoc, updateDoc, deleteDoc, onAuthStateChanged, setDoc } from "./firebase-config.js";
+import { sleep } from "./global.js";
 
 const modal = document.getElementById("myModal");
 const btn = document.getElementById("open-popup");
@@ -163,6 +164,11 @@ async function saveChanges() {
     const setTitle = document.getElementById("name").value;
     const { terms, definitions } = getTermsAndDefinitions();
 
+    if (checkDuplicates(terms) || checkDuplicates(definitions)) {
+        alert("There are duplicate terms or definitions. Please ensure that each term and definition is unique.");
+        return;
+    } else {
+
     try {
         await updateDoc(setRef, {
             name: setTitle,
@@ -191,10 +197,11 @@ async function saveChanges() {
             }));
         }
         alert("Changes saved successfully.");
-        window.location.href = `set.html?name=${setTitle}`;
+        window.location.href = `set.html?name=${encodeURIComponent(setTitle)}`;
     } catch (error) {
         console.error("Error updating flashcard set: ", error);
     }
+}
 }
 
 
@@ -207,7 +214,9 @@ document.getElementById("add-card").addEventListener("click", function() {
     document.getElementById("ac").appendChild(cardContainer);
 
     
-    cardContainer.querySelector(".bin-icon").addEventListener("click", function() {
+    cardContainer.querySelector(".bin-icon").addEventListener("click", async function() {
+        cardContainer.classList.add("deleted");
+        await sleep(500);
         cardContainer.remove();
     });
 });
@@ -309,4 +318,8 @@ async function saveData(uid, json) {
     } catch (error) {
         console.error("Error saving flashcard data: ", error);
     }
+}
+
+function checkDuplicates(terms) {
+    return new Set(terms).size !== terms.length;
 }

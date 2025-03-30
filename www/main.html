@@ -20,7 +20,9 @@
           <!-- <a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by dmitri13 - Flaticon</a> -->
           <a href="create.html" class="nav-item"><img src="img/add.png" class="nav-icon"></a>
       </div>
-      </center>
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
           
 
         <!-- main contents -->
@@ -28,7 +30,7 @@
           <div class="top-content">
             <h2 class="title">Home</h2>
             <!-- <a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Catalin Fertu - Flaticon</a>-->
-            <img src="img/search-interface-symbol.png" class="search" height="30px" width="30px" id="myBtn">
+            <img src="img/refresh.png" class="search" height="30px" width="30px" id="refresh">
           </div>
 
           </div>
@@ -65,25 +67,8 @@
         <div class="recent-lump">
           <!--<a href="https://www.flaticon.com/free-icons/ui" title="ui icons">Ui icons created by Freepik - Flaticon</a>-->
           <span class="container-tag"><img src="img/music-library.png" height="20px" width="20px"> your library</span>
-          <div class="card-shelf">
-            <div class="study-set">
-              <div class="card-container">
-                  <h3>Study Set 1</h3>
-                  <p>Some description here...</p>
-              </div>
-          </div>
-          <div class="study-set">
-              <div class="card-container">
-                  <h3>Study Set 2</h3>
-                  <p>Some description here...</p>
-              </div>
-          </div>
-          <div class="study-set">
-              <div class="card-container">
-                  <h3>Study Set 3</h3>
-                  <p>Some description here...</p>
-              </div>
-          </div>
+          <div class="card-shelf" id="library">
+            <h4>no sets in library</h4>
           </div>
         </div>
 </div>
@@ -124,5 +109,6 @@
 
     <script src="js/global.js"></script>
     <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/global.js"></script>
     <script type="module" src="js/main.js"></script>
 </html>

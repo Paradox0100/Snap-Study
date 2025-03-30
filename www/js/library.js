@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-window.refresh = async function() {
+document.getElementById("refresh").onclick = async function() {
     showLoading(); 
     console.log("Refreshing data...");
     await fetchData(); 

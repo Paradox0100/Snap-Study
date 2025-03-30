@@ -165,5 +165,61 @@ function shuffleTwoLists(list1, list2) {
 }
 
 document.getElementById("back-arrow").addEventListener("click", () => {
-    window.location.href = `set.html?name=${JSON.parse(localStorage.getItem('set')).name}`;
+    window.location.href = `set.html?name=${encodeURIComponent(JSON.parse(localStorage.getItem('set')).name)}`;
+});
+
+
+
+let startX;
+const flashcard = document.getElementById('flip-card-inner');
+
+flashcard.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+});
+
+flashcard.addEventListener('touchmove', (e) => {
+    const moveX = e.touches[0].clientX;
+    const diffX = startX - moveX;
+
+    if (Math.abs(diffX) > 50) { 
+        if (diffX > 0) {
+            
+            flashcard.classList.add('swipe-left');
+        } else {
+            
+            flashcard.classList.add('swipe-right');
+        }
+        
+        flashcard.removeEventListener('touchstart', touchStartHandler);
+        flashcard.removeEventListener('touchmove', touchMoveHandler);
+    }
+});
+
+const touchStartHandler = (e) => {
+    startX = e.touches[0].clientX;
+};
+
+const touchMoveHandler = (e, element) => {
+    const moveX = e.touches[0].clientX;
+    const diffX = startX - moveX;
+
+    if (Math.abs(diffX) > 50) { 
+        if (diffX > 0) {
+            
+            element.classList.add('swipe-left');
+            flashcard.style.backgroundColor = 'red'; 
+        } else {
+            
+            element.classList.add('swipe-right');
+            flashcard.style.backgroundColor = 'green'; 
+        }
+        
+        element.removeEventListener('touchstart', touchStartHandler);
+        element.removeEventListener('touchmove', (event) => touchMoveHandler(event, element));
+    }
+};
+
+flashcard.addEventListener('animationend', () => {
+    flashcard.classList.remove('swipe-left', 'swipe-right');
+    
 });

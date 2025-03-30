@@ -22,9 +22,9 @@
     </div>
     <div class="tab-container">
         <div class="tabs">
-            <button class="tab-button active" onclick="openTab(event, 'byme')">By Me</button>
+            <button class="tab-button active" onclick="openTab(event, 'byme')">Personal</button>
             <button class="tab-button" onclick="openTab(event, 'shared')">Shared</button>
-            <img src="img/refresh.png" height="24px" width="24px" class="refresh-button" onclick="refresh()">
+            <img src="img/refresh.png" height="24px" width="24px" class="refresh-button" id="refresh">
         </div>
         <div id="byme" class="tab">
             <h2>My Sets</h2>
@@ -68,5 +68,6 @@
     </script>
     <script type="module" src="js/firebase-config.js"></script>
     <script type="module" src="js/library.js"></script>
+    <script type="module" src="js/global.js"></script>
 </body>
 </html>

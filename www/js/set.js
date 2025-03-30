@@ -119,8 +119,7 @@ function main(flashcardSet) {
     for (let i = 0; i < terms.length; i++) {
         let setElement = document.createElement("div");
 
-        setElement.className = "set-box";
-
+        setElement.classList.add("set-box");
         let htmlData = `
             <span class="term">${terms[i]}</span>
             <div class="divider"></div>
@@ -131,6 +130,12 @@ function main(flashcardSet) {
         `;
 
         setElement.innerHTML = htmlData;
+        setElement.addEventListener("click", function() {
+            let term = setElement.querySelector(".term").innerText;
+            let definition = setElement.querySelector(".definition").innerText;
+            let tempText = `term ${term} definition ${definition}`;
+            handleCardText(tempText);
+        });
         document.getElementById("terms").appendChild(setElement);
     }
     hideLoading();
@@ -181,9 +186,9 @@ document.getElementById("edit-btn").addEventListener('click', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const shared = urlParams.get('shared');
     if (shared) {
-        window.location.href = `edit.html?name=${JSON.parse(localStorage.getItem("set")).inId}&shared=${true}`;
+        window.location.href = `edit.html?name=${encodeURIComponent(JSON.parse(localStorage.getItem("set")).inId)}&shared=${true}`;
     } else {
-        window.location.href = "edit.html?name=" + JSON.parse(localStorage.getItem("set")).name;
+        window.location.href = "edit.html?name=" + encodeURIComponent(JSON.parse(localStorage.getItem("set")).name);
     }
 });
 
@@ -210,7 +215,7 @@ async function deleteSet(shared) {
     const uid = user.uid; 
 
     let setRef; 
-    if (shared) {
+    if (!shared) {
         let setName = JSON.parse(localStorage.getItem("set")).name;
         setRef = doc(db, "flashcards", uid, "sets", setName); 
     } else {
@@ -342,7 +347,8 @@ document.getElementById("share-btn").addEventListener('click', async function() 
     } else if (JSON.parse(localStorage.getItem("set")).maker !== localStorage.getItem("email")) {
         alert("You cannot share a set that you did not create.");
         return;
-    } else if (JSON.parse(localStorage.getItem("set")).inId === setName) {
+    } else if (JSON.parse(localStorage.getItem("set")).inId === setName || JSON.parse(localStorage.getItem("set")).name === setName) {
+        document.getElementById("emailModal").style.display = "block";
         await populateEmails(JSON.parse(localStorage.getItem("set")).viewers || []);
         let emails = await openModalAndWait();
         console.log(`emails ${emails}`);
@@ -381,3 +387,20 @@ document.getElementById("share-btn").addEventListener('click', async function() 
     }
     }
 });
+
+document.getElementById("refresh-btn").addEventListener('click', async function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const setName = urlParams.get('name');
+
+            const shared = urlParams.get('shared');
+    await getFlashcardSetByName(setName);
+    console.log("Refreshing data...");
+    window.location.reload();
+});
+
+
+function handleCardText(text) {
+    
+    const utterance = new SpeechSynthesisUtterance(` ${text}`);
+    speechSynthesis.speak(utterance);
+}

@@ -1,5 +1,4 @@
-import { auth } from "./firebase-config.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { auth, signInWithEmailAndPassword } from "./firebase-config.js";
 
 
 document.getElementById("login-form").addEventListener("submit", (e) => {
@@ -21,5 +20,6 @@ document.getElementById("login-form").addEventListener("submit", (e) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.error("Error signing in:", errorCode, errorMessage);
+            alert("Error signing in:", errorCode, errorMessage);
         });
 });
